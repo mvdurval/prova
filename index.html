@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#e8efcf">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Simulado SAAQ">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="Simulado de prática da prova teórica da SAAQ (classe 5), em português, baseado no Guide de la route.">
+<title>Simulado SAAQ Classe 5</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%233f5a14'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' font-family='Arial' font-weight='700' fill='white'%3E5%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+<style>
+/* Contraste: textos e botões com razão ≥ 7:1 (WCAG AAA); bordas de controles ≥ 3:1.
+   Cores nunca são o único sinal: respostas trazem ✓/✗ e texto. */
+:root{
+  --bg:#f7f9ee; --surface:#fdfef9; --fg:#1f2a16; --muted:#475339;
+  --line:#d5deba; --edge:#7d8f55;
+  --primary:#3f5a14; --primary-ink:#ffffff; --primary-soft:#e9f0cf;
+  --band:#e8efcf;
+  --ok:#1a5424; --ok-soft:#dff0d3; --bad:#8f1d16; --bad-soft:#fbe9e6;
+  --warn:#5e4300; --warn-soft:#fbf3d9; --stage:#f1f5e3;
+  --scale:1;
+  --font:'Open Sans',-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',Roboto,Arial,sans-serif;
+  color-scheme:light;
+}
+html{font-size:calc(112.5% * var(--scale));-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-bottom:140px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:1rem;line-height:1.6;touch-action:manipulation;-webkit-tap-highlight-color:transparent;padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.gov{background:var(--surface);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.gov .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:8px}
+.brand{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--primary);min-width:0}
+.brand i{flex:none;display:block;width:4px;height:28px;background:var(--primary)}
+.zoom{display:flex;gap:8px;flex:none}
+.zoom button{font:700 1rem var(--font);min-width:48px;min-height:48px;border:2px solid var(--primary);background:var(--surface);color:var(--primary);border-radius:8px;cursor:pointer}
+.zoom button[disabled]{opacity:.4}
+.band{background:var(--band);border-bottom:1px solid var(--line)}
+.band .wrap{padding-block:16px}
+.band h1{margin:0;font-size:1.3rem;line-height:1.3;font-weight:700;text-wrap:balance}
+.band p{margin:2px 0 0;color:var(--muted)}
+main.wrap{padding-block:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px 18px;min-width:0}
+.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.top b{font-weight:700}
+.stats{color:var(--muted)}
+.prog{height:10px;background:var(--line);border-radius:5px;overflow:hidden;margin-bottom:20px}
+.prog i{display:block;height:100%;background:var(--primary)}
+.tag{display:block;font-size:.9rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary);margin-bottom:6px}
+h2{margin:0;font-size:1.35rem;line-height:1.45;font-weight:600;text-wrap:pretty}
+.sign{margin:16px 0 4px;background:var(--stage);border:1px solid var(--line);border-radius:8px;display:flex;justify-content:center;padding:14px}
+.sign svg{width:160px;height:160px;max-width:100%}
+.opts{display:grid;gap:12px;margin:20px 0 4px;border:0;padding:0;min-width:0}
+.opt{display:flex;gap:14px;align-items:flex-start;padding:14px;min-height:64px;border:2px solid var(--edge);border-radius:10px;cursor:pointer;background:var(--surface);position:relative;font-size:1.15rem;line-height:1.45}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.ltr{flex:none;width:36px;height:36px;border:2px solid var(--primary);border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:1rem;color:var(--primary)}
+.txt{min-width:0;padding-top:4px;overflow-wrap:anywhere}
+.mark{display:block;font-size:1rem;font-weight:700;margin-top:4px}
+.opt.sel{border-color:var(--primary);background:var(--primary-soft);box-shadow:inset 0 0 0 1px var(--primary)}
+.opt.sel .ltr{background:var(--primary);color:var(--primary-ink)}
+.opt.ok{border-color:var(--ok);background:var(--ok-soft);box-shadow:inset 0 0 0 1px var(--ok)}
+.opt.ok .ltr{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.ok .mark{color:var(--ok)}
+.opt.bad{border-color:var(--bad);background:var(--bad-soft);box-shadow:inset 0 0 0 1px var(--bad)}
+.opt.bad .ltr{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.bad .mark{color:var(--bad)}
+.opt.locked{cursor:default}
+.opt:focus-within,.btn:focus-visible,.zoom button:focus-visible,.linkbtn:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+.fb{margin-top:20px;border-left:6px solid var(--primary);background:var(--primary-soft);padding:14px 16px;border-radius:0 8px 8px 0}
+.fb.ok{border-color:var(--ok);background:var(--ok-soft)}
+.fb.bad{border-color:var(--bad);background:var(--bad-soft)}
+.fb strong{display:block;margin-bottom:4px;font-size:1.1rem}
+.ref{display:block;margin-top:8px;font-size:.9rem;color:var(--muted)}
+.fb.ok strong{color:var(--ok)}.fb.bad strong{color:var(--bad)}
+.btn{font:700 1.2rem var(--font);min-height:58px;padding:12px 24px;border-radius:10px;border:2px solid var(--primary);background:var(--primary);color:var(--primary-ink);cursor:pointer;width:100%}
+.btn.sec{background:var(--surface);color:var(--primary)}
+.btn[disabled]{background:#d9e0c4;border-color:#d9e0c4;color:#4f5a40;cursor:not-allowed}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--edge);padding:12px max(16px,env(safe-area-inset-left,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-right,0px));z-index:5}
+.bar .in{max-width:760px;margin:0 auto}
+.end h2{margin-bottom:8px}
+.score{font-size:2.6rem;line-height:1.1;font-weight:700;font-variant-numeric:tabular-nums;margin:8px 0}
+.stack{display:grid;gap:12px;margin-top:20px}
+.lead{color:var(--muted);margin:0}
+.foot{padding-block:8px 24px;color:var(--muted);font-size:.9rem}
+.foot p{margin:0 0 10px}
+.linkbtn{font:600 1rem var(--font);color:var(--primary);background:none;border:0;padding:10px 0;min-height:44px;text-decoration:underline;cursor:pointer}
+.confirm{background:var(--warn-soft);color:var(--warn);border:2px solid var(--warn);border-radius:10px;padding:14px;margin:8px 0}
+.confirm p{margin:0 0 12px;font-size:1rem;color:var(--warn)}
+.confirm .row{display:grid;gap:10px}
+.notice{background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:.95rem}
+@media (min-width:600px){.confirm .row,.stack{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:no-preference){.prog i{transition:width .25s ease}}
+</style>
+</head>
+<body>
+<header class="gov"><div class="wrap">
+  <div class="brand"><i></i>Gouvernement du Québec</div>
+  <div class="zoom" role="group" aria-label="Tamanho do texto">
+    <button type="button" id="z-dn" aria-label="Diminuir o texto">A−</button>
+    <button type="button" id="z-up" aria-label="Aumentar o texto">A+</button>
+  </div>
+</div></header>
+<div class="band"><div class="wrap">
+  <h1>Questionário sobre segurança viária</h1>
+  <p>Automóvel · Classe 5 · Simulado de prática</p>
+</div></div>
+<main class="wrap"><div id="app"></div><div class="foot" id="foot"></div></main>
+<div class="bar" id="bar" hidden><div class="in" id="bar-in"></div></div>
+
+<script>
+(function(){
+'use strict';
+var KEY='saaq5.v1';
+var CATS={L:'Carteira e permissões',A:'Álcool, drogas e distrações',V:'O veículo',S:'Sinalização',C:'Regras de circulação',U:'Usuários vulneráveis e veículos pesados',X:'Acidentes e infrações'};
+var SCALES=[1,1.15,1.3,1.5];
+
+var SIGNS={
+stop:'<svg viewBox="0 0 120 120" role="img" aria-label="Placa octogonal vermelha com a palavra ARRÊT"><polygon points="38.46,8 81.54,8 112,38.46 112,81.54 81.54,112 38.46,112 8,81.54 8,38.46" fill="#c8102e"/><polygon points="40.11,13 79.89,13 107,40.11 107,79.89 79.89,107 40.11,107 13,79.89 13,40.11" fill="none" stroke="#fff" stroke-width="3"/><text x="60" y="68" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="22" fill="#fff">ARRÊT</text></svg>',
+yield:'<svg viewBox="0 0 120 120" role="img" aria-label="Placa triangular invertida vermelha e branca"><polygon points="12,20 108,20 60,106" fill="#fff" stroke="#c8102e" stroke-width="10" stroke-linejoin="round"/></svg>',
+school:'<svg viewBox="0 0 120 120" role="img" aria-label="Placa pentagonal amarelo-esverdeada com silhuetas de crianças"><polygon points="14,12 106,12 106,68 60,112 14,68" fill="#bfd730" stroke="#111" stroke-width="4" stroke-linejoin="round"/><circle cx="46" cy="38" r="7" fill="#111"/><rect x="39" y="47" width="14" height="24" rx="5" fill="#111"/><circle cx="74" cy="42" r="6" fill="#111"/><rect x="68" y="50" width="12" height="20" rx="4" fill="#111"/></svg>',
+work:'<svg viewBox="0 0 120 120" role="img" aria-label="Placa em forma de losango laranja"><polygon points="60,8 112,60 60,112 8,60" fill="#f28a1e" stroke="#111" stroke-width="4" stroke-linejoin="round"/></svg>',
+speed50:'<svg viewBox="0 0 120 120" role="img" aria-label="Placa retangular branca com o número 50"><rect x="22" y="8" width="76" height="104" rx="8" fill="#fff" stroke="#111" stroke-width="4"/><text x="60" y="80" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="52" fill="#111">50</text></svg>',
+noentry:'<svg viewBox="0 0 120 120" role="img" aria-label="Círculo vermelho com barra horizontal branca"><circle cx="60" cy="60" r="52" fill="#c8102e"/><rect x="24" y="50" width="72" height="20" fill="#fff"/></svg>',
+noleft:'<svg viewBox="0 0 120 120" role="img" aria-label="Seta de conversão à esquerda dentro de um círculo vermelho cortado por uma barra"><circle cx="60" cy="60" r="46" fill="#fff" stroke="#c8102e" stroke-width="10"/><path d="M74 88 V58 H48" fill="none" stroke="#111" stroke-width="9"/><polygon points="48,44 30,58 48,72" fill="#111"/><line x1="28" y1="28" x2="92" y2="92" stroke="#c8102e" stroke-width="10"/></svg>',
+oneway:'<svg viewBox="0 0 120 120" role="img" aria-label="Retângulo preto com seta branca"><rect x="8" y="34" width="104" height="52" rx="6" fill="#111"/><line x1="24" y1="60" x2="78" y2="60" stroke="#fff" stroke-width="9"/><polygon points="76,42 100,60 76,78" fill="#fff"/></svg>',
+straight:'<svg viewBox="0 0 120 120" role="img" aria-label="Círculo verde com seta para cima"><circle cx="60" cy="60" r="46" fill="#fff" stroke="#1b8a3a" stroke-width="10"/><line x1="60" y1="92" x2="60" y2="44" stroke="#111" stroke-width="9"/><polygon points="42,46 60,22 78,46" fill="#111"/></svg>'
+};
+
+/* [categoria, pergunta, resposta correta, errada, errada, errada, explicação, página do guia, placa opcional] */
+var RAW=[
+/* ---- Carteira e permissões ---- */
+["L","Qual é a idade mínima para obter uma carteira de classe 5 (veículo de passeio) em Québec?","16 anos","15 anos","17 anos","18 anos","O candidato deve ter pelo menos 16 anos. Se tiver menos de 18, precisa do consentimento por escrito de quem detém a autoridade parental.",15],
+["L","Uma pessoa de 16 anos quer obter a carteira de classe 5. Que exigência adicional ela deve cumprir?","Apresentar o consentimento por escrito de quem detém a autoridade parental","Apresentar uma autorização da escola","Ter um seguro em seu nome","Esperar até completar 17 anos","Quem tem menos de 18 anos precisa do consentimento por escrito de quem detém a autoridade parental.",15],
+["L","Há quanto tempo, no mínimo, o aprendiz deve ter a permissão de aprendiz para poder fazer a prova prática?","12 meses","6 meses","10 meses","24 meses","Para ser admitido na prova prática, é preciso ter a permissão de aprendiz há pelo menos 12 meses.",19],
+["L","Quando um aprendiz pode fazer a prova teórica na SAAQ?","Com a permissão de aprendiz há pelo menos 10 meses e um agendamento","Assim que recebe a permissão de aprendiz","Com a permissão há pelo menos 12 meses","Ao completar 18 anos","Para ser admitido na prova teórica, é preciso ter a permissão de aprendiz há pelo menos 10 meses e ter agendado a prova.",18],
+["L","Em que horário o titular de uma permissão de aprendiz é proibido de dirigir?","Entre meia-noite e 5h","Entre 22h e 6h","Entre 23h e 5h","Entre meia-noite e 6h","A permissão de aprendiz proíbe dirigir entre meia-noite e 5h da manhã.",17],
+["L","Que requisitos deve cumprir quem acompanha um aprendiz fora do curso de direção?","Ter carteira válida para veículo de passeio há pelo menos 2 anos e sentar-se ao lado dele","Ter carteira há 1 ano e sentar-se no banco de trás","Ter permissão probatória e sentar-se ao lado dele","Ter 21 anos ou mais, independentemente do tempo de carteira","O acompanhante deve ter carteira válida há pelo menos dois anos, sentar-se ao lado do aprendiz e poder dar-lhe ajuda e conselhos.",18],
+["L","O titular de uma permissão probatória pode acompanhar um aprendiz?","Não, é proibido","Sim, se tiver mais de 12 meses de experiência","Sim, se tiver mais de 25 anos","Sim, mas somente de dia","O titular de uma permissão probatória não pode acompanhar um aprendiz em seu aprendizado.",18],
+["L","Por quanto tempo a permissão probatória deve estar válida antes de se obter a carteira de motorista?","24 meses","12 meses","18 meses","36 meses","São necessários 24 meses de permissão probatória válida. A experiência só é contada enquanto a permissão está válida.",19],
+["L","Um titular de permissão probatória acumula 4 pontos de inaptidão. O que acontece?","A permissão é revogada e ele não pode obter outra por pelo menos 3 meses","Recebe uma advertência por escrito","A permissão é suspensa por 24 horas","Paga uma multa e mantém a permissão","Com 4 pontos ou mais, a permissão de aprendiz ou probatória é revogada e não se pode obter uma nova antes de 3 meses.",20],
+["L","Quantos pontos de inaptidão levam à revogação da carteira de um motorista com 25 anos ou mais?","15 pontos","8 pontos","12 pontos","10 pontos","O regime é de 15 pontos para titulares com 25 anos ou mais.",21],
+["L","Quantos pontos levam à revogação da carteira de um motorista com menos de 23 anos?","8 pontos","4 pontos","12 pontos","15 pontos","Menos de 23 anos: 8 pontos. De 23 a 24 anos: 12 pontos. Com 25 anos ou mais: 15 pontos.",21],
+["L","Quantas classes de carteira existem em Québec?","12","5","8","15","Existem 12 classes, e cada uma autoriza a condução de uma categoria de veículos.",22],
+["L","Que veículos a carteira de classe 5 autoriza a dirigir?","Automóveis, vans e caminhões de 2 eixos com massa líquida inferior a 4 500 kg","Somente automóveis de passageiros","Caminhões com mais de 4 500 kg","Motocicletas e ciclomotores","A classe 5 cobre veículos de passeio (automóvel ou van) e caminhões de 2 eixos com menos de 4 500 kg, entre outros.",29],
+["L","Se alguém dirige sem uma carteira da classe apropriada, o que um agente da paz pode fazer com o veículo?","Apreendê-lo por 30 dias","Apreendê-lo por 7 dias","Retê-lo por 24 horas","Nada, só pode multar","O agente pode apreender o veículo por um período de 30 dias.",38],
+["L","Que documentos o motorista deve levar sempre consigo?","Carteira válida e assinada, certificado de registro do veículo e comprovante de seguro","Somente a carteira de motorista","Carteira e passaporte","Carteira e cartão do seguro-saúde","É preciso portar a carteira válida e assinada, o certificado de registro válido e assinado e o comprovante de seguro ou de solvência.",38],
+["L","Em quanto tempo é preciso informar à SAAQ uma mudança de endereço?","30 dias","7 dias","15 dias","60 dias","Todo motorista deve informar a mudança de endereço em até 30 dias.",39],
+["L","A carteira plástica com foto dura quatro anos. Com que frequência é preciso pagar para manter o direito de dirigir?","Todo ano","A cada 4 anos","A cada 2 anos","A cada 6 meses","Embora a carteira dure quatro anos, o privilégio de dirigir só é válido por um ano e deve ser pago anualmente.",40],
+["L","Uma pessoa com carteira válida de outra província se muda para Québec. Até quando ela pode dirigir um veículo de passeio sem carteira de Québec?","Por 6 meses a partir da data em que se estabeleceu","Por 30 dias","Por 3 meses","Por 1 ano","Ela pode dirigir um veículo de passeio durante os seis meses seguintes ao seu estabelecimento.",41],
+["L","Se o estado de saúde mudar e puder afetar a direção, em quanto tempo é preciso informar a SAAQ?","30 dias","24 horas","7 dias","Somente ao renovar a carteira","Toda mudança no estado de saúde deve ser comunicada em até 30 dias.",35],
+["L","O que significa a condição A em uma carteira de motorista?","É obrigatório usar óculos ou lentes de contato para dirigir","Só pode dirigir de dia","É obrigatório usar aparelho auditivo","Só pode dirigir veículo automático","A condição A obriga o uso de lentes corretivas. A B é dirigir somente de dia e a J, câmbio automático.",36],
+["L","Um motorista com a carteira suspensa por uma multa não paga dirige mesmo assim. O que pode acontecer?","Apreensão do veículo por 30 dias e multa de 300 $ a 600 $","Somente uma advertência","Uma multa de 15 $","Revogação imediata e prisão","O agente pode apreender o veículo por 30 dias e aplicar multa de 300 $ a 600 $, além das custas judiciais.",45],
+["L","Por quanto tempo os pontos de inaptidão permanecem no registro?","2 anos a partir da declaração de culpa ou do pagamento da multa","1 ano","5 anos","Até a renovação da carteira","Permanecem 2 anos a partir da declaração de culpa. Pagar a multa equivale a essa declaração.",49],
+["L","Quando os pontos de inaptidão são lançados no registro de condução?","Quando a SAAQ recebe o aviso de sentença que confirma a culpa","No dia da infração","No dia em que o policial entrega a multa","No dia da renovação anual","São lançados ao receber o aviso de sentença, não na data da infração.",47],
+["L","A quem se pede uma permissão restrita depois de uma primeira revogação por pontos?","A um juiz da Cour du Québec","A qualquer agente de polícia","À seguradora","À prefeitura","É preciso apresentar um pedido a um juiz da Cour du Québec e provar que dirigir é necessário para o trabalho principal.",50],
+["L","Um motorista de 30 anos perde a carteira por acúmulo de pontos pela primeira vez em dois anos. Quanto dura a sanção?","3 meses","6 meses","12 meses","1 mês","Primeira vez: 3 meses. Segunda: 6 meses. Terceira: 12 meses.",49],
+["L","A partir de que idade a SAAQ pode exigir um exame de competência ou uma avaliação de saúde?","70 anos","60 anos","65 anos","75 anos","A Société pode exigir isso quando o titular chega aos 70 anos.",37],
+["L","O que deve fazer uma pessoa cuja carteira está vencida há 3 anos ou mais?","Passar novamente nas provas teórica e prática","Apenas pagar a renovação","Fazer somente a prova teórica","Fazer somente a prova prática","Se a permissão está vencida há três anos ou mais, é preciso passar nas provas teórica e prática.",40],
+["L","É legal ser titular de duas carteiras de motorista emitidas por administrações diferentes?","Não, é proibido ter mais de uma","Sim, se uma for de Québec e a outra dos EUA","Sim, se ambas estiverem válidas","Sim, com autorização da SAAQ","É proibido ser titular de mais de uma carteira emitida pela SAAQ ou por outra administração do Canadá ou dos EUA.",39],
+["L","Qual é a idade mínima para dirigir um ciclomotor (classe 6D)?","14 anos","12 anos","16 anos","18 anos","É preciso ter 14 anos ou mais (com consentimento dos pais se for menor), passar no curso e nas provas.",33],
+/* ---- Álcool, drogas e distrações ---- */
+["A","A partir de que alcoolemia um motorista pode ser acusado segundo o Código Criminal?","80 mg por 100 ml de sangue (0,08)","50 mg por 100 ml (0,05)","100 mg por 100 ml (0,10)","120 mg por 100 ml (0,12)","Com 80 mg de álcool por 100 ml de sangue ou mais, é possível ser acusado com base no Código Criminal.",53],
+["A","O que ocorre com uma alcoolemia de 0,05 em um adulto médio?","As faculdades já ficam significativamente afetadas","Não há nenhum efeito perceptível","Só os motoristas jovens são afetados","Aumenta a confiança sem afetar a direção","Já com 0,05 as faculdades ficam muito afetadas, mesmo sem ultrapassar o limite legal.",66],
+["A","Com uma alcoolemia entre 0,05 e 0,08, quantas vezes aumenta o risco de acidente?","4,5 vezes","1,5 vez","2 vezes","Não aumenta","Essa faixa de alcoolemia multiplica por 4,5 o risco de se envolver em um acidente.",66],
+["A","Qual é a única forma de eliminar o álcool do organismo?","A passagem do tempo","Tomar café","Tomar um banho frio","Caminhar ao ar livre","Caminhar, tomar banho ou comer não aceleram a eliminação do álcool. Só o tempo consegue isso.",68],
+["A","Alguém que dorme no banco de trás do próprio veículo pode ser acusado de dirigir com as faculdades afetadas?","Sim, se tiver a possibilidade de colocá-lo em funcionamento","Não, porque não está dirigindo","Somente se o motor estiver ligado","Somente se o veículo estiver na via pública","A lei sanciona também a guarda ou o controle do veículo, mesmo dormindo atrás, se a pessoa puder colocá-lo em funcionamento.",55],
+["A","Que sanção administrativa imediata se aplica com alcoolemia de 80 mg/100 ml ou mais?","Suspensão imediata da carteira por 90 dias","Suspensão de 24 horas","Revogação por 1 ano","Somente multa","O Code de la sécurité routière prevê a suspensão imediata da permissão por 90 dias.",56],
+["A","Que regra de álcool se aplica a menores de 22 anos, aprendizes e titulares de permissão probatória?","Álcool zero","Máximo de 0,02","Máximo de 0,05","Máximo de 0,08","Aplica-se tolerância zero: não deve haver nenhum vestígio de álcool nem de droga no sangue.",57],
+["A","Que limite de álcool se aplica aos condutores de veículos pesados?","0,05","0,08","Zero","0,10","Para veículos pesados o limite é 0,05. Para ônibus, micro-ônibus e táxi é álcool zero.",57],
+["A","Um taxista testa positivo para álcool. Que consequência direta ele sofre?","Proibição de dirigir esse veículo por 24 horas","Suspensão por 1 ano","Apreensão por 90 dias","Revogação definitiva","Álcool zero para condutores de ônibus, micro-ônibus ou táxi: ficam proibidos de dirigir esses veículos por 24 horas.",57],
+["A","Que sanção corresponde a um motorista flagrado com um celular na mão, pela primeira vez?","5 pontos de inaptidão e multa de 300 $ a 600 $","3 pontos e multa de 100 $","2 pontos e multa de 80 $","Sem pontos e multa de 300 $","Primeira infração: 5 pontos de inaptidão e multa de 300 $ a 600 $.",65],
+["A","Você está parado em um semáforo vermelho. Pode usar o celular na mão?","Não, continua sendo considerado motorista","Sim, enquanto o veículo não se mover","Sim, se o motor estiver desligado","Sim, para mensagens curtas","Quem espera em um semáforo vermelho ou em um engarrafamento continua sendo considerado como dirigindo.",64],
+["A","Em que caso é permitido usar o celular ao dirigir?","Para ligar para o 911","Para consultar um mapa","Para ler mensagens curtas","Para trocar a música","É permitido ligar para o 911 e fazer um pagamento sem contato, sem infringir outras regras de segurança.",64],
+["A","Em caso de reincidência no uso de aparelho eletrônico (em 2 anos), qual é a multa mínima?","600 $","300 $","100 $","1 000 $","Na reincidência somam-se 5 pontos, a multa mínima dobra para 600 $ e a carteira é suspensa imediatamente.",65],
+["A","Diante da fadiga ao volante, qual é o único meio realmente eficaz para se recuperar por completo?","Dormir","Tomar café","Abrir as janelas","Aumentar o volume do rádio","O sono é o único meio eficaz de se recuperar por completo.",63],
+["A","Diante de sinais de fadiga, que duração de cochilo o guia recomenda?","20 a 30 minutos","5 minutos","1 hora","Não recomenda dormir","Recomenda-se parar em local seguro e fazer um cochilo de 20 a 30 minutos.",62],
+["A","Sobre a cannabis e a direção:","Embora o consumo seja legal, dirigir sob seu efeito é perigoso e proibido","É permitido dirigir se consumir pouco","Só é proibido à noite","Só é proibido para motoristas jovens","Embora seja legal consumi-la, a cannabis ao volante é perigosa e proibida.",69],
+["A","Que tipo de medicamento vendido sem receita pode causar sonolência ao dirigir?","Os anti-histamínicos contra resfriado ou alergia","As vitaminas","Os xaropes sem ingredientes ativos","Nenhum medicamento sem receita","Os anti-histamínicos podem causar sonolência. É preciso ler a bula ou consultar o médico ou o farmacêutico.",69],
+["A","Que porcentagem da informação necessária para dirigir chega pela visão?","90 %","50 %","70 %","30 %","Os estudos mostram que 90 % da informação indispensável para dirigir passa pelos olhos.",59],
+["A","Por que se deve reduzir a velocidade ao dirigir à noite?","Porque o alcance dos faróis é limitado","Porque há mais policiais","Porque as placas não são vistas","Porque o motor esquenta","A iluminação dos faróis tem alcance limitado, por isso é preciso reduzir a velocidade.",61],
+["A","O que estabelece o princípio de prudência incorporado ao Código em 2018?","Cada usuário deve agir com prudência e respeito, especialmente em relação aos mais vulneráveis","Os pedestres sempre têm prioridade absoluta","Os condutores de veículos pesados não têm obrigações","Somente os motoristas devem ser prudentes","Cada usuário deve ser prudente com os mais vulneráveis, e estes devem adotar comportamentos que favoreçam a própria segurança.",70],
+/* ---- O veículo ---- */
+["V","Qual é o seguro de responsabilidade civil mínimo exigido de todo proprietário de veículo em Québec?","50 000 $","25 000 $","100 000 $","500 000 $","A lei obriga a ter um seguro de responsabilidade de pelo menos 50 000 $.",78],
+["V","Entre que datas os veículos de passeio registrados em Québec devem usar pneus de inverno?","De 1.º de dezembro a 15 de março","De 1.º de novembro a 1.º de abril","De 15 de outubro a 1.º de maio","De 1.º de dezembro a 1.º de abril","De 1.º de dezembro a 15 de março.",92],
+["V","Quando são permitidos os pneus com pregos em veículos de passeio?","De 15 de outubro a 1.º de maio","O ano todo","De 1.º de dezembro a 15 de março","De 1.º de novembro a 31 de março","O uso de pneus com pregos é permitido entre 15 de outubro e 1.º de maio.",92],
+["V","Antes de sair no inverno, o que você deve remover do veículo?","Neve e gelo das janelas, do teto e do capô","Somente a neve do para-brisa","Somente o gelo das janelas laterais","Nada, se dirigir devagar","É obrigatório remover neve e gelo das janelas, do teto e do capô, e garantir que nada se solte.",92],
+["V","Quanta luz devem deixar passar as janelas laterais ao lado do posto de condução?","70 % ou mais","50 % ou mais","30 % ou mais","100 %","As janelas laterais do motorista devem deixar passar 70 % ou mais da luz.",91],
+["V","Que largura máxima pode ter uma faixa escura na parte superior do para-brisa?","15 cm","30 cm","5 cm","Não é permitida nenhuma faixa","É permitida uma faixa de no máximo 15 cm na parte superior do para-brisa.",91],
+["V","O que acontece se um agente encontrar um detector de radar no seu veículo?","Pode confiscá-lo, e a multa é de 500 $ a 1 000 $","Apenas adverte","O seguro é anulado","Deve pagar 50 $","É proibido instalar ou dirigir com detector de radar. O agente pode confiscá-lo e a multa é de 500 $ a 1 000 $.",89],
+["V","Que distância mínima deve haver entre o centro do volante (airbag) e o peito do motorista?","25 cm","10 cm","15 cm","50 cm","Deve-se manter pelo menos 25 cm entre o centro da tampa do airbag e o centro do peito.",217],
+["V","Onde devem viajar as crianças de 12 anos ou menos?","No banco de trás","No banco da frente com cinto","Onde preferirem","No banco da frente com o airbag desativado","As crianças de 12 anos ou menos devem viajar no banco de trás, em um assento adequado ao peso e à altura, se necessário.",217],
+["V","Até que altura ou idade uma criança deve viajar em dispositivo de retenção ou assento de elevação?","Enquanto medir menos de 145 cm ou tiver menos de 9 anos","Enquanto medir menos de 120 cm","Enquanto tiver menos de 7 anos","Enquanto medir menos de 150 cm e tiver menos de 12 anos","Toda criança com menos de 145 cm ou menos de 9 anos deve ir em dispositivo de retenção ou assento adaptado.",215],
+["V","A que altura deve ficar o apoio de cabeça?","O centro na altura dos olhos ou da borda superior das orelhas","Na altura da nuca","Na altura dos ombros","O mais baixo possível","Deve ficar na altura dos olhos ou da borda superior das orelhas, a no máximo 7 cm da cabeça.",218],
+["V","Quem é responsável por garantir que um passageiro com menos de 16 anos use bem o cinto de segurança?","O motorista","O passageiro","Os pais, se estiverem presentes","Ninguém, é opcional","O motorista deve garantir que um passageiro com menos de 16 anos use corretamente o cinto.",215],
+["V","Que cor de luzes intermitentes é reservada aos veículos de polícia?","Azuis","Vermelhas","Amarelas","Verdes","Azuis: polícia. Vermelhas: veículos de emergência. Amarelas: serviço, escolta ou remoção de neve.",87],
+["V","Com que frequência ônibus e micro-ônibus devem passar por verificação mecânica?","A cada 6 meses","Todo ano","A cada 2 anos","A cada 3 meses","Os ônibus, micro-ônibus e veículos de transporte escolar devem ser verificados no mínimo a cada seis meses.",95],
+["V","Após uma verificação mecânica com defeitos menores, quanto tempo há para repará-los?","48 horas","7 dias","30 dias","24 horas","É entregue um aviso para fazer os reparos no prazo de 48 horas.",96],
+["V","Quantos retrovisores um automóvel deve ter, no mínimo?","Dois: um interno e um externo esquerdo","Um interno","Três","Um externo direito","Deve ter pelo menos dois retrovisores em bom estado: um no centro do para-brisa e outro externo, à esquerda.",91],
+["V","Onde se coloca a placa de registro em um automóvel de passeio?","Na parte traseira","Na parte dianteira","Em ambas","No para-brisa","É fixada firmemente na parte traseira. Só os tratores com quinta roda a levam na frente.",79],
+["V","Um veículo ficou guardado (remisage) mais de 12 meses. O que se exige antes de voltar a circular?","Um certificado de verificação mecânica conforme","Um novo seguro de 100 000 $","Uma nova prova de direção","Nada de especial","Exige-se um certificado de verificação mecânica conforme, emitido por um mandatário da SAAQ.",82],
+/* ---- Sinalização ---- */
+["S","O que significa um semáforo vermelho?","Parar antes da linha de retenção ou da faixa de pedestres","Parar somente se houver tráfego","Reduzir a velocidade","Avançar com cuidado","O motorista deve imobilizar o veículo antes da faixa de pedestres ou da linha de retenção.",103],
+["S","Um semáforo está com defeito e não funciona. Como você deve se comportar?","Como se o cruzamento tivesse placas de PARE em todas as direções","Como se houvesse uma luz vermelha intermitente","Passar com cuidado sem parar","Como se houvesse uma placa de dê a preferência","Se não houver sinalização que o substitua, age-se como se houvesse PARE em todas as direções.",103],
+["S","O que significa uma luz verde intermitente?","Conversão à esquerda protegida: os veículos em sentido contrário estão parados","Preparar-se para parar","Perigo à frente","Proibido virar","A luz verde intermitente indica que a conversão à esquerda é protegida.",104],
+["S","O que fazer diante de uma luz vermelha intermitente?","Parar e dar a preferência; vem acompanhada de uma placa de PARE","Reduzir a velocidade e continuar","Avançar com cuidado sem parar","Esperar a luz ficar verde","É preciso imobilizar o veículo e dar a preferência aos veículos da outra via. Acompanha uma placa ARRÊT.",105],
+["S","O que significa uma luz amarela intermitente?","Reduzir a velocidade e continuar depois de dar a preferência a quem já está no cruzamento","Parar completamente","Proibido passar","Fim da via","É preciso reduzir a velocidade e continuar depois de dar a preferência.",105],
+["S","O que significa a mão laranja do semáforo de pedestres?","Não iniciar a travessia","Atravessar rápido","Atravessar com cuidado","O semáforo está com defeito","A mão adverte os pedestres a não entrarem na pista.",106],
+["S","Sobre uma faixa há um X vermelho aceso. O que significa?","Não circular nem parar nessa faixa","Faixa reservada a caminhões","Faixa de saída","Faixa para veículos lentos","O X vermelho indica que não se deve circular nem parar na faixa. A seta verde para baixo a autoriza.",107],
+["S","O que indica uma linha dupla contínua amarela na pista?","Separa sentidos opostos e não pode ser cruzada","Pode ser cruzada para ultrapassar","Separa faixas do mesmo sentido","Marca a borda direita","Duas linhas amarelas contínuas separam faixas de sentido contrário e não podem ser cruzadas.",116],
+["S","Com uma linha amarela mista (uma contínua e uma tracejada), quando é possível ultrapassar?","Quando a linha tracejada está do seu lado","Quando a linha contínua está do seu lado","Nunca","Sempre","Só se pode cruzar quando a linha tracejada está do lado do motorista.",116],
+["S","De que cor são as linhas que separam faixas do mesmo sentido?","Branca","Amarela","Verde","Vermelha","As linhas brancas separam faixas do mesmo sentido. As amarelas, sentidos contrários.",115],
+["S","Que cor têm as placas de sinalização de obras?","Laranja","Amarela","Verde","Azul","Laranja: obras. Amarelo: perigo. Branco e preto: regulamentação. Verde, azul ou marrom: indicação.",121],
+["S","Qual é a velocidade máxima em uma zona escolar, salvo outra indicação?","50 km/h, de segunda a sexta, de setembro a junho, das 7h às 17h","30 km/h o ano todo","50 km/h somente das 8h às 16h","70 km/h","Em zona escolar a velocidade não pode passar de 50 km/h, de segunda a sexta, de setembro a junho, entre 7h e 17h.",162],
+["S","Em que zona a multa por excesso de velocidade é dobrada?","Em uma zona de obras sinalizada","Em zonas residenciais","Em rodovias à noite","Em zonas com neve","A multa é dobrada para todo excesso de velocidade cometido em uma zona de obras indicada por sinalização.",255],
+["S","Que caráter têm as ordens de um sinaleiro em uma zona de obras?","São obrigatórias","São apenas uma sugestão","Só se obedece se houver polícia","Podem ser ignoradas se não houver tráfego","As ordens do sinaleiro têm caráter obrigatório.",175],
+["S","Um agente da paz dá uma ordem contrária ao que indica uma placa. A quem se deve obedecer?","Ao agente da paz","À placa","A nenhum dos dois","Ao veículo da frente","Deve-se obedecer ao agente, ao guarda escolar ou ao sinaleiro, mesmo que a sinalização indique o contrário.",212],
+["S","O que indica um símbolo com coroa vermelha e barra diagonal?","Uma proibição do que aparece em seu interior","Uma obrigação","Um perigo","Uma informação","Coroa vermelha com barra diagonal: proibição. Coroa verde: obrigação.",125],
+["S","De que cor se marca uma faixa de pedestres em um cruzamento com semáforo ou placa de PARE?","Branca","Amarela","Verde","Vermelha","Em cruzamentos com semáforos ou PARE, a faixa é marcada em branco. Entre cruzamentos ou sem controle, em amarelo.",118],
+["S","O que é um sas vélo?","Um espaço à frente da linha de retenção, marcado em verde, reservado aos ciclistas","Uma faixa para bicicletas em rodovia","Uma oficina de reparo","Um bicicletário","É um espaço seguro para ciclistas, situado à frente da linha de retenção em um semáforo e delimitado em verde.",251],
+["S","O que indica o losango alongado (macle) branco pintado na pista?","Uma faixa reservada a certas categorias de veículos","Uma faixa de pedestres","Uma zona de estacionamento","O fim da rodovia","A macle é o símbolo da voie réservée (faixa reservada).",120],
+["S","O que indica esta placa octogonal vermelha?","Parada completa obrigatória no cruzamento","Dar a preferência sem parar","Reduzir a velocidade","Perigo à frente","O octógono é reservado à placa ARRÊT: é preciso fazer uma parada completa.",126,"stop"],
+["S","O que esta placa triangular invertida vermelha e branca obriga a fazer?","Dar a preferência aos veículos que já circulam pela via em que você vai entrar","Parar sempre por completo","Não entrar nessa via","Circular em velocidade mínima","Cédez le passage: é preciso dar a preferência. Só se para quando não há outra forma de fazê-lo.",127,"yield"],
+["S","Uma placa em forma de pentágono amarelo-esverdeado indica:","O início de uma zona escolar","Uma passagem de nível","Uma zona de obras","Um hospital","O pentágono é reservado à zona escolar.",122,"school"],
+["S","Uma placa em forma de losango laranja corresponde a:","Sinalização de obras","Sinalização de perigo","Sinalização de regulamentação","Sinalização de indicação","Laranja é obras e amarelo é perigo. O losango identifica as placas de perigo e de obras.",121,"work"],
+["S","O que indica esta placa retangular branca com preto?","Velocidade máxima autorizada de 50 km/h","Velocidade mínima de 50 km/h","Velocidade recomendada de 50 km/h","Distância de 50 m","As placas brancas e pretas indicam a velocidade máxima autorizada. A velocidade recomendada vai em placa amarela.",128,"speed50"],
+["S","O que significa esta placa circular vermelha com barra branca?","Entrada proibida","Sentido obrigatório","Fim da rodovia","Estacionamento proibido","Entrée interdite: evita que se entre na contramão em uma via de mão única.",126,"noentry"],
+["S","O que esta placa proíbe?","Virar à esquerda","Virar à direita","Fazer retorno","Seguir em frente","Coroa vermelha com barra diagonal: proibição da manobra que a seta mostra.",134,"noleft"],
+["S","Uma placa preta com uma seta branca indica:","Obrigação de circular no sentido indicado (mão única)","Uma faixa reservada","Uma rua sem saída","Proibido ultrapassar","Sens unique: obriga a circular no sentido indicado.",128,"oneway"],
+["S","Uma coroa verde com uma seta para cima significa:","Obrigação de seguir em frente","Manobra opcional","Proibido seguir em frente","Faixa para ciclistas","Os círculos verdes indicam obrigação: não se permite nenhuma outra manobra além da ilustrada.",133,"straight"],
+/* ---- Regras de circulação ---- */
+["C","Qual é a velocidade máxima em uma autoestrada?","100 km/h","90 km/h","110 km/h","120 km/h","Em autoestradas: mínimo de 60 km/h e máximo de 100 km/h.",223],
+["C","Qual é a velocidade mínima em uma autoestrada?","60 km/h","40 km/h","50 km/h","70 km/h","Em autoestradas: mínimo de 60 km/h e máximo de 100 km/h.",223],
+["C","Qual é a velocidade máxima em uma cidade ou vila se não houver sinalização em contrário?","50 km/h","40 km/h","60 km/h","30 km/h","Em uma cidade ou vila o máximo é 50 km/h, salvo sinalização em contrário.",223],
+["C","Qual é a velocidade máxima em uma estrada de cascalho?","70 km/h","50 km/h","90 km/h","60 km/h","Em uma estrada de cascalho o máximo é 70 km/h.",223],
+["C","Qual é a velocidade máxima em uma estrada pavimentada (asfalto ou concreto) sem outra indicação?","90 km/h","100 km/h","80 km/h","70 km/h","Em uma estrada com pavimento de concreto ou asfalto o máximo é 90 km/h.",223],
+["C","Que regra permite estimar uma distância prudente do veículo da frente?","A regra dos dois segundos","A regra dos cinco metros","A regra dos 50 %","A regra dos três carros","O guia menciona a regra dos «dois segundos» para avaliar a distância entre dois veículos.",224],
+["C","Ao ultrapassar um ciclista em uma zona de 50 km/h ou menos, que distância lateral mínima deve deixar?","1 m","0,5 m","1,5 m","2 m","1 m em uma zona de 50 km/h ou menos e 1,5 m em uma zona de mais de 50 km/h.",225],
+["C","Ao ultrapassar um ciclista em uma zona de mais de 50 km/h, que distância lateral mínima deve deixar?","1,5 m","1 m","2 m","0,5 m","1,5 m em uma zona de mais de 50 km/h.",225],
+["C","Em qual destes lugares se deve evitar ultrapassar invadindo a faixa contrária?","Em uma curva, em uma lombada ou em uma faixa de pedestres","Em uma reta com boa visibilidade e linha tracejada","Em uma rua de mão única","Em uma autoestrada de várias faixas","Deve-se evitar ao se aproximar e no topo de uma subida, em curvas, faixas de pedestres, passagens de nível e túneis.",226],
+["C","Quando se pode ultrapassar pela direita em uma pista de mão única?","Somente um veículo que vira à esquerda ou segue para uma saída de autoestrada","Sempre que houver espaço","Quando o da frente está devagar","Nunca","Exceções: veículo que vira à esquerda ou vai para uma saída de autoestrada, ou um que faz manutenção na faixa da esquerda.",227],
+["C","Um pedestre manifesta claramente a intenção de atravessar em uma faixa de pedestres. O que você deve fazer?","Dar a preferência","Buzinar","Acelerar","Esperar que o pedestre recue","Deve-se dar a preferência a quem atravessa ou manifesta claramente a intenção de fazê-lo, com contato visual ou um gesto da mão.",240],
+["C","À noite, a que distância de outro veículo você deve passar do farol alto para o baixo?","150 metros","50 metros","100 metros","300 metros","Deve-se passar para o farol baixo ao se aproximar a menos de 150 metros de um veículo que vem de frente ou que vai à frente.",239],
+["C","Para virar à direita com o sinal vermelho (onde é permitido), o que deve fazer primeiro?","Parar completamente antes da linha de retenção e olhar duas vezes","Reduzir a velocidade","Buzinar","Virar sem parar se ninguém estiver vindo","É preciso parar, olhar duas vezes e decidir. A conversão não é obrigatória e só se faz se a via estiver livre.",236],
+["C","Em uma rotatória (carrefour giratoire), quem tem a preferência?","Os veículos que já circulam dentro do anel","Os que vão entrar","Os veículos maiores","Os que viram à direita","Antes de entrar é preciso dar a preferência aos pedestres e aos veículos que já estão dentro do anel.",237],
+["C","Em que sentido se circula em uma rotatória?","No sentido anti-horário, entrando pela direita","No sentido horário","Conforme a faixa escolhida","Em ambos os sentidos","Entra-se pela direita e circula-se no sentido anti-horário.",237],
+["C","Quando se usa a seta em uma rotatória?","Ao sair do anel","Ao entrar","Nunca","Somente se houver várias faixas","Não é preciso ligar a seta ao entrar, mas sempre se deve ligá-la ao sair do anel.",237],
+["C","Aproxima-se um veículo de emergência com luzes e sirene. O que você deve fazer?","Reduzir a velocidade, encostar à direita e parar se necessário","Acelerar para liberar a via","Manter a faixa e a velocidade","Virar bem na frente do veículo","É preciso reduzir, ir para a direita e parar se necessário. Nunca se deve virar na frente do veículo de emergência.",246],
+["C","Um veículo de emergência está parado com as luzes acesas em uma estrada de várias faixas. O que você deve fazer (corredor de segurança)?","Reduzir a velocidade e passar para a faixa da esquerda, se for seguro","Passar rápido pela mesma faixa","Sempre parar","Buzinar","Deve diminuir a velocidade e mudar para a faixa da esquerda, se for seguro, e voltar à da direita depois de passar pelos trabalhadores e veículos.",247],
+["C","Um ônibus escolar está com as luzes vermelhas intermitentes acesas. A que distância você deve parar?","A mais de 5 metros","A mais de 2 metros","A mais de 10 metros","A mais de 1 metro","É preciso imobilizar-se a mais de 5 metros do ônibus escolar.",248],
+["C","O que indicam as luzes amarelas de advertência de um ônibus escolar?","Preparar-se para parar","Parar imediatamente","Ultrapassar","Reduzir para 30 km/h","Com as luzes amarelas é preciso se preparar para parar. Com as vermelhas intermitentes, parar por completo.",248],
+["C","Com luzes vermelhas intermitentes ou cancela abaixada em uma passagem de nível, a que distância da via férrea você deve parar?","A pelo menos 5 metros","A 1 metro","A 3 metros","A 10 metros","É preciso imobilizar o veículo a 5 metros ou mais da via férrea.",249],
+["C","A que distância mínima de um hidrante é proibido estacionar?","3 metros","1 metro","5 metros","10 metros","Não se pode estacionar a menos de 3 m de um hidrante.",257],
+["C","A que distância mínima de um cruzamento ou de uma faixa de pedestres é proibido estacionar?","5 metros","3 metros","10 metros","1,5 metro","Não se pode estacionar a menos de 5 m de um cruzamento, de uma faixa de pedestres ou de ciclistas, nem de uma passagem de nível.",257],
+["C","Até que idade não se pode deixar uma criança sozinha, sem vigilância, em um veículo estacionado?","Não se pode deixar sem vigilância uma criança com menos de 7 anos","Não se pode deixar uma criança com menos de 12 anos","Não se pode deixar uma criança com menos de 5 anos","Não se pode deixar uma criança com menos de 10 anos","Não se pode deixar sem vigilância no veículo uma criança com menos de 7 anos.",256],
+["C","A que distância máxima da calçada o veículo deve ser estacionado?","30 cm","1 m","60 cm","10 cm","O veículo deve ser estacionado no sentido da circulação e a no máximo 30 cm da borda da pista.",256],
+["C","Se você estaciona em uma ladeira, o que deve fazer?","Puxar o freio de estacionamento e voltar as rodas dianteiras para a borda mais próxima","Deixar as rodas retas","Deixar o veículo em ponto morto","Somente puxar o freio de mão","Deve acionar o freio de estacionamento e orientar as rodas de modo que o veículo se desloque em direção à calçada.",256],
+["C","Pode-se dar marcha à ré em uma autoestrada?","Não, é proibido","Sim, se não houver tráfego","Sim, para corrigir uma saída errada","Sim, somente na rampa de saída","É proibido dar marcha à ré em uma autoestrada e em suas rampas de entrada ou saída.",250],
+["C","Em um cruzamento com PARE em todas as direções, quem passa primeiro?","Quem chegou primeiro ao cruzamento","O da direita, sempre","O veículo maior","O que segue em frente","Quem parou deve dar a preferência a todo veículo que chegou ao cruzamento antes dele.",243],
+["C","Ao virar à esquerda em um cruzamento, a quem você deve dar a preferência?","Aos veículos que vêm em sentido contrário e aos pedestres e ciclistas","Somente aos pedestres","Somente aos ciclistas","A ninguém","Deve dar a preferência aos pedestres e ciclistas que atravessam e a todo veículo que circula em sentido contrário.",244],
+["C","Qual é o limite de velocidade em uma rua compartilhada?","20 km/h","30 km/h","10 km/h","40 km/h","Em uma rue partagée o limite é de 20 km/h e o pedestre tem prioridade. Em uma vélorue é de 30 km/h.",250],
+["C","Um policial sinaliza para você parar. O que deve fazer?","Ligar o pisca-pisca, encostar com segurança, parar e deixar as mãos visíveis no volante","Seguir até o destino","Descer do veículo","Apagar as luzes e sair","É preciso manter a calma, ligar o pisca-alerta, encostar, parar e deixar as mãos sobre o volante.",246],
+["C","Se outro veículo está ultrapassando você, o que deve fazer?","Não acelerar (pode reduzir por cortesia)","Acelerar","Mudar de faixa","Buzinar","Um motorista que está sendo ultrapassado não deve acelerar. Por cortesia, pode reduzir para facilitar a ultrapassagem.",225],
+["C","Em uma pista com faixa central, para que serve essa faixa?","Somente para virar à esquerda","Para ultrapassar","Para circular normalmente","Para estacionar","A faixa central serve exclusivamente para fazer uma conversão à esquerda, em um ou outro sentido.",221],
+["C","Quando se pode circular pelo acostamento (accotement)?","Somente em caso de necessidade ou se uma placa autorizar","Sempre","Para ultrapassar","Quando há congestionamento","Não se pode circular pelo acostamento, salvo em caso de necessidade (via fechada ou obstruída, urgência) ou com placa que o autorize.",260],
+["C","Quantos passageiros um veículo pode transportar?","No máximo, tantos quantos forem os cintos de segurança disponíveis","O dobro dos assentos","Sem limite","Dois por cinto","O motorista não pode transportar mais passageiros do que o número de cintos disponíveis.",261],
+["C","Que consequência tem participar de um racha ou do «surf de veículo»?","Suspensão imediata da carteira por 30 dias e apreensão do veículo por 7 dias na primeira vez","Somente multa de 30 $","Uma advertência","Perda do seguro","A carteira é suspensa na hora por 30 dias e o veículo é apreendido por 7 dias na primeira vez e por 30 dias em caso de reincidência.",261],
+["C","Você entra em uma autoestrada pela rampa de acesso. Quem tem a preferência?","Os veículos que já circulam pela autoestrada","Os que estão entrando","Os mais rápidos","Ambos por igual","Quem entra deve dar a preferência. Quem já circula tem prioridade.",242],
+["C","Como se deve sinalizar as intenções antes de virar ou mudar de faixa?","De forma contínua e com distância suficiente, com as setas","Somente com um gesto da mão","Exatamente na hora de virar","Com o pisca-alerta","Deve-se sinalizar com as setas de forma contínua e por uma distância suficiente para garantir a segurança.",239],
+["C","Quando se deve usar o pisca-alerta (feux de détresse)?","Somente por motivos de segurança, como veículo avariado ou marcha excessivamente lenta","Para estacionar em fila dupla","Para passar um semáforo","Sempre que chove","O pisca-alerta é usado somente por motivos de segurança.",239],
+/* ---- Usuários vulneráveis e veículos pesados ---- */
+["U","O capacete é obrigatório para um ciclista adulto em bicicleta convencional?","Não, mas é recomendado","Sim, sempre","Somente à noite","Somente na cidade","O capacete não é obrigatório em bicicleta convencional, mas é uma proteção eficaz. Em bicicleta com assistência elétrica, é.",270],
+["U","Quantos ciclistas podem circular, no máximo, em uma mesma fila?","15","5","10","20","Os ciclistas de um grupo devem andar em fila. O máximo permitido é de 15 em uma fila.",269],
+["U","Quais são as características de uma bicicleta com assistência elétrica?","Motor de até 500 W que deixa de dar assistência a 32 km/h","Motor de 750 W que assiste até 45 km/h","Motor de 250 W que assiste até 25 km/h","Motor de 1 000 W que assiste até 50 km/h","Deve ter pedais e um motor elétrico de no máximo 500 W que deixe de dar assistência a 32 km/h.",271],
+["U","Que condição permite a um ciclista com menos de 12 anos circular por uma estrada de mais de 50 km/h?","Estar acompanhado por um adulto","Usar capacete","Circular de dia","Nenhuma, sempre pode","Os menores de 12 anos não podem circular por uma estrada de mais de 50 km/h, a menos que estejam acompanhados por um adulto.",206],
+["U","O motociclista deve manter o farol aceso?","Sim, o tempo todo","Somente à noite","Somente em autoestrada","Somente com chuva","O farol branco da motocicleta ou do ciclomotor deve permanecer aceso o tempo todo.",272],
+["U","Você está atrás de um caminhão e não vê o retrovisor lateral dele. O que isso significa?","Que você o segue muito de perto e está em um ponto cego","Que você está a uma distância segura","Que pode ultrapassar","Que o caminhoneiro o vê bem","Se você não vê um dos retrovisores laterais do caminhão, está seguindo de perto e o motorista não consegue vê-lo.",252],
+["U","Como deve circular um pedestre se não houver calçada?","Pelo acostamento ou pela borda da pista, em sentido contrário ao tráfego","No mesmo sentido do tráfego","Pelo centro da pista","Sempre pela direita","Se não houver calçada, deve circular pelo acostamento ou pela borda da pista, em sentido contrário à circulação.",265],
+["U","Um pedestre pode atravessar um cruzamento na diagonal?","Não, salvo sinalização em contrário","Sim, sempre","Somente com luz verde","Somente de dia","O Código proíbe os pedestres de atravessar um cruzamento na diagonal, a menos que uma placa o permita.",266],
+["U","Um caminhão sinaliza que vai virar à direita em um cruzamento. O que você deve fazer?","Ficar atrás e deixá-lo completar a conversão","Passar pela direita dele","Acelerar","Cortar a frente dele","É preciso colaborar ficando atrás e deixar que o veículo pesado termine a conversão sem cortar o seu caminho.",252],
+/* ---- Acidentes e infrações ---- */
+["X","Quem indeniza as vítimas de lesões corporais em um acidente de trânsito em Québec?","A SAAQ, sem considerar quem é o responsável","O seguro privado do responsável","O tribunal cível","A prefeitura","O regime público da SAAQ indeniza os danos corporais sem determinar o responsável pelo acidente.",293],
+["X","Quem cobre os danos materiais em um acidente entre dois veículos?","Cada motorista recorre à sua própria seguradora privada","A SAAQ","O governo federal","Ninguém","Os danos materiais são cobertos pelo seguro de responsabilidade de empresas privadas. Cada proprietário recorre à sua seguradora.",298],
+["X","O primeiro motorista a chegar ao local de um acidente, o que deve fazer?","Estacionar no acostamento a cerca de 30 m, ligar o pisca-alerta e chamar a polícia","Mover os feridos","Seguir seu caminho","Acender o farol alto","Deve estacionar a cerca de trinta metros, sinalizar o acidente, desligar a ignição dos carros acidentados e avisar a polícia.",301],
+["X","Deve-se mover uma pessoa ferida em um acidente?","Não, salvo perigo real de incêndio ou de colisão","Sim, sempre","Sim, até a calçada","Somente se ela pedir","Nunca se deve deslocar um ferido, salvo em caso de perigo real de incêndio ou de outra colisão.",301],
+["X","Quanto tempo se tem para pedir a revisão de uma decisão da SAAQ?","60 dias a partir da notificação","30 dias","90 dias","1 ano","Toda pessoa que se sinta prejudicada pode pedir a revisão dentro de 60 dias após a notificação.",298],
+["X","Zona de 50 km/h, velocidade registrada de 75 km/h (excesso de 25 km/h). Qual é a multa?","90 $","45 $","135 $","180 $","15 $ + 5 faixas de 5 km/h × 15 $ = 90 $.",311],
+["X","Quantos pontos de inaptidão acarreta desrespeitar um semáforo vermelho ou uma placa de PARE?","3 pontos","1 ponto","5 pontos","9 pontos","Desrespeitar um semáforo vermelho ou uma placa de PARE soma 3 pontos.",316],
+["X","Quantos pontos de inaptidão acarreta não parar diante de um ônibus escolar com as luzes vermelhas intermitentes?","9 pontos","4 pontos","3 pontos","6 pontos","É uma das infrações mais graves: 9 pontos de inaptidão.",316],
+["X","Quantos pontos de inaptidão acarreta não dar passagem a um veículo de emergência com os sinais acionados?","4 pontos","2 pontos","3 pontos","9 pontos","Não dar passagem a um veículo de emergência com os sinais acionados soma 4 pontos.",316],
+["X","Qual é a multa por dirigir ou ocupar um veículo sem usar corretamente o cinto de segurança?","200 $ a 300 $ e 3 pontos","30 $ a 60 $","80 $ a 100 $ sem pontos","1 000 $","A multa é de 200 $ a 300 $ e a omissão soma 3 pontos de inaptidão.",308],
+["X","O que acontece com o valor da multa por um grande excesso de velocidade?","É dobrado","Permanece igual","Cai pela metade","É sempre triplicado","As multas são dobradas em caso de grande excesso de velocidade. São triplicadas se houver 3 ou mais condenações anteriores pela mesma falta em 10 anos.",310],
+["X","Se você atropelar um animal de mais de 25 kg e não conseguir contatar o dono, o que deve fazer?","Comunicar-se sem demora com a polícia mais próxima","Seguir seu caminho","Tirar o animal da via e ir embora","Esperar um dia antes de avisar","O motorista deve comunicar-se sem demora com o posto de polícia mais próximo para declarar o acidente.",301],
+["X","Que multa mínima obrigatória prevê o Código Criminal para uma primeira infração de direção com faculdades afetadas?","1 000 $ e proibição de dirigir por pelo menos 1 ano","300 $","100 $ sem proibição","3 000 $ e 10 anos","Para uma primeira infração: multa mínima obrigatória de 1 000 $ e proibição de dirigir por no mínimo um ano.",318]
+];
+
+var BANK=RAW.map(function(r,i){return {id:i,c:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],e:r[6],p:r[7],s:r[8]||null};});
+var N=BANK.length;
+
+/* ---------- utilidades ---------- */
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function ids(){var a=[];for(var i=0;i<N;i++)a.push(i);return a;}
+var LET=['A','B','C','D'];
+
+/* ---------- progresso salvo no navegador (localStorage) ---------- */
+var canStore=(function(){try{localStorage.setItem('__t','1');localStorage.removeItem('__t');return true;}catch(e){return false;}})();
+try{if(navigator.storage&&navigator.storage.persist){navigator.storage.persist();}}catch(e){}
+
+function fresh(scale){return {v:1,mode:'all',order:shuffle(ids()),i:0,perm:null,pick:null,done:false,res:{},scale:scale||1};}
+function load(){
+  var raw=null;
+  try{raw=JSON.parse(localStorage.getItem(KEY));}catch(e){}
+  if(!raw||!Array.isArray(raw.order))return fresh();
+  var seen={},order=[];
+  raw.order.forEach(function(x){if(Number.isInteger(x)&&x>=0&&x<N&&!seen[x]){seen[x]=1;order.push(x);}});
+  if(!order.length)return fresh(raw.scale);
+  var mode=raw.mode==='errors'?'errors':'all';
+  if(mode==='all'){ /* perguntas novas, se o banco crescer, entram no fim da fila */
+    var missing=ids().filter(function(x){return !seen[x];});
+    order=order.concat(shuffle(missing));
+  }
+  var P={v:1,mode:mode,order:order,i:Math.min(Math.max(parseInt(raw.i,10)||0,0),order.length),perm:null,pick:null,done:false,res:{},scale:SCALES.indexOf(raw.scale)>-1?raw.scale:1};
+  if(raw.res&&typeof raw.res==='object'){Object.keys(raw.res).forEach(function(k){if(raw.res[k]===0||raw.res[k]===1)P.res[k]=raw.res[k];});}
+  if(Array.isArray(raw.perm)&&raw.perm.length===4&&[0,1,2,3].every(function(n){return raw.perm.indexOf(n)>-1;}))P.perm=raw.perm;
+  if(P.perm&&Number.isInteger(raw.pick)&&raw.pick>=0&&raw.pick<4)P.pick=raw.pick;
+  P.done=!!(raw.done&&P.perm&&P.pick!==null);
+  return P;
+}
+var P=load();
+function save(){if(!canStore)return;try{localStorage.setItem(KEY,JSON.stringify(P));}catch(e){}}
+var confirmReset=false;
+
+function applyScale(){
+  document.documentElement.style.setProperty('--scale',String(P.scale));
+  var k=SCALES.indexOf(P.scale);
+  document.getElementById('z-dn').disabled=(k<=0);
+  document.getElementById('z-up').disabled=(k>=SCALES.length-1);
+}
+
+function stats(){
+  var ans=0,ok=0;
+  P.order.forEach(function(id){if(P.res[id]===0||P.res[id]===1){ans++;if(P.res[id]===1)ok++;}});
+  return {ans:ans,ok:ok};
+}
+
+/* ---------- telas ---------- */
+var $app=document.getElementById('app'),$bar=document.getElementById('bar'),$barIn=document.getElementById('bar-in'),$foot=document.getElementById('foot');
+
+function render(){
+  applyScale();
+  var finished=P.i>=P.order.length;
+  if(finished)renderEnd();else renderQuiz();
+  renderFoot();
+}
+
+function renderQuiz(){
+  var total=P.order.length;
+  var b=BANK[P.order[P.i]];
+  if(!P.perm){P.perm=shuffle([0,1,2,3]);P.pick=null;P.done=false;save();}
+  var st=stats();
+  var last=P.i===total-1;
+  var html='<section class="card" aria-live="off">'+
+    (canStore?'':'<div class="notice" role="note">Este navegador não permite salvar o progresso (modo privado?). Ao fechar a página, você volta ao início.</div>')+
+    '<div class="top"><span>Pergunta <b>'+(P.i+1)+'</b> de '+total+'</span>'+(st.ans?'<span class="stats">Acertos: <b>'+st.ok+'</b> de '+st.ans+'</span>':'')+'</div>'+
+    '<div class="prog" aria-hidden="true"><i style="width:'+(P.i/total*100)+'%"></i></div>'+
+    '<span class="tag">'+esc(CATS[b.c])+(P.mode==='errors'?' · revisão de erros':'')+'</span><h2 id="qtext">'+esc(b.q)+'</h2>'+
+    (b.s?'<div class="sign">'+SIGNS[b.s]+'</div>':'')+
+    '<fieldset class="opts" aria-labelledby="qtext">';
+  for(var k=0;k<4;k++){
+    var ok=P.perm[k]===0;
+    var cls='opt',mark='';
+    if(P.done){cls+=' locked';if(ok){cls+=' ok';mark='<span class="mark">✓ Resposta correta</span>';}else if(P.pick===k){cls+=' bad';mark='<span class="mark">✗ Sua resposta</span>';}}
+    else if(P.pick===k)cls+=' sel';
+    html+='<label class="'+cls+'" for="o'+k+'"><input type="radio" name="ans" id="o'+k+'" value="'+k+'"'+(P.pick===k?' checked':'')+(P.done?' disabled':'')+'><span class="ltr" aria-hidden="true">'+LET[k]+'</span><span class="txt">'+esc(b.o[P.perm[k]])+mark+'</span></label>';
+  }
+  html+='</fieldset>';
+  if(P.done){
+    var right=P.perm[P.pick]===0;
+    html+='<div class="fb '+(right?'ok':'bad')+'" role="status"><strong>'+(right?'✓ Resposta correta':'✗ Resposta incorreta')+'</strong>'+esc(b.e)+'<span class="ref">Guide de la route, p. '+b.p+'</span></div>';
+  }
+  html+='</section>';
+  $app.innerHTML=html;
+  $bar.hidden=false;
+  $barIn.innerHTML=P.done
+    ?'<button class="btn" id="main-btn" data-act="next">'+(last?'Ver resultado':'Próxima pergunta')+'</button>'
+    :'<button class="btn" id="main-btn" data-act="check"'+(P.pick===null?' disabled':'')+'>Validar a resposta</button>';
+}
+
+function renderEnd(){
+  var st=stats();
+  var wrong=P.order.filter(function(id){return P.res[id]===0;});
+  var pct=st.ans?Math.round(st.ok/st.ans*100):0;
+  $bar.hidden=true;
+  $app.innerHTML='<section class="card end"><span class="tag">'+(P.mode==='errors'?'Revisão de erros concluída':'Todas as perguntas concluídas')+'</span>'+
+    '<h2>Você chegou ao fim.</h2><div class="score">'+st.ok+' / '+st.ans+'</div><p class="lead">'+pct+' % de respostas corretas.</p>'+
+    '<div class="stack">'+
+    (wrong.length?'<button class="btn" data-act="errors">Repassar só os erros ('+wrong.length+')</button>':'')+
+    '<button class="btn'+(wrong.length?' sec':'')+'" data-act="restart-now">Recomeçar tudo</button></div></section>';
+  window.scrollTo(0,0);
+}
+
+function renderFoot(){
+  var html='';
+  if(confirmReset){
+    html+='<div class="confirm" role="alert"><p>Apagar o progresso e recomeçar do início?</p><div class="row"><button class="btn sec" data-act="reset-no">Cancelar</button><button class="btn" data-act="restart-now">Sim, recomeçar</button></div></div>';
+  }else if(P.i<P.order.length){
+    html+='<button class="linkbtn" data-act="reset-ask">Recomeçar do início</button>';
+  }
+  html+='<p>Perguntas baseadas no Guide de la route, 4.ª edição (SAAQ, 2024). Material de prática não oficial. O progresso fica salvo neste aparelho.</p>';
+  $foot.innerHTML=html;
+}
+
+/* ---------- ações ---------- */
+function selectOption(k){
+  if(P.done||P.i>=P.order.length)return;
+  P.pick=k;save();
+  Array.prototype.forEach.call($app.querySelectorAll('.opt'),function(l,j){l.classList.toggle('sel',j===k);l.querySelector('input').checked=(j===k);});
+  var b=document.getElementById('main-btn');if(b)b.disabled=false;
+}
+function act(a){
+  if(a==='check'){
+    if(P.pick===null||P.done)return;
+    P.done=true;P.res[P.order[P.i]]=(P.perm[P.pick]===0)?1:0;save();render();
+    var fb=$app.querySelector('.fb');if(fb)fb.scrollIntoView({block:'nearest',behavior:'smooth'});
+  }
+  else if(a==='next'){
+    if(!P.done)return;
+    P.i++;P.perm=null;P.pick=null;P.done=false;save();render();window.scrollTo(0,0);
+  }
+  else if(a==='reset-ask'){confirmReset=true;renderFoot();}
+  else if(a==='reset-no'){confirmReset=false;renderFoot();}
+  else if(a==='restart-now'){var sc=P.scale;P=fresh(sc);confirmReset=false;save();render();window.scrollTo(0,0);}
+  else if(a==='errors'){
+    var wrong=P.order.filter(function(id){return P.res[id]===0;});
+    if(!wrong.length)return;
+    wrong.forEach(function(id){delete P.res[id];});
+    P.mode='errors';P.order=shuffle(wrong);P.i=0;P.perm=null;P.pick=null;P.done=false;save();render();window.scrollTo(0,0);
+  }
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('[data-act]');
+  if(b&&!b.disabled)act(b.getAttribute('data-act'));
+});
+document.addEventListener('change',function(e){
+  if(e.target&&e.target.name==='ans')selectOption(parseInt(e.target.value,10));
+});
+document.getElementById('z-up').addEventListener('click',function(){var k=SCALES.indexOf(P.scale);if(k<SCALES.length-1){P.scale=SCALES[k+1];save();applyScale();}});
+document.getElementById('z-dn').addEventListener('click',function(){var k=SCALES.indexOf(P.scale);if(k>0){P.scale=SCALES[k-1];save();applyScale();}});
+document.addEventListener('keydown',function(e){
+  if(P.i>=P.order.length||e.ctrlKey||e.metaKey||e.altKey)return;
+  var k=e.key.toLowerCase(),idx=-1;
+  if(k>='1'&&k<='4')idx=parseInt(k,10)-1;
+  else if(k==='a'||k==='b'||k==='c'||k==='d')idx=k.charCodeAt(0)-97;
+  if(idx>-1){selectOption(idx);e.preventDefault();return;}
+  if(k==='enter'&&e.target.tagName!=='BUTTON'){var mb=document.getElementById('main-btn');if(mb&&!mb.disabled){mb.click();e.preventDefault();}}
+});
+
+render();
+})();
+</script>
+</body>
+</html>
